@@ -1,0 +1,108 @@
+import React, { useState } from 'react';
+import { ArrowDown, ArrowUp, FileText } from 'lucide-react';
+import useFinanceStore from '../../../store/useFinanceStore';
+import { TransactionRow } from './TransactionRow';
+import { EmptyState, Button } from '../../ui';
+import './TransactionsTable.css';
+
+const SortableHeader = ({ label, field, currentSort, setSort }) => {
+  const isActive = currentSort.field === field;
+  const isDesc = currentSort.direction === 'desc';
+
+  return (
+    <div 
+      className={`table-header-cell table-col-${field} ${isActive ? 'active' : ''}`}
+      onClick={() => setSort(field)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter') setSort(field); }}
+    >
+      {label}
+      {isActive && (
+        <span className="sort-icon">
+          {isDesc ? <ArrowDown size={14} /> : <ArrowUp size={14} />}
+        </span>
+      )}
+    </div>
+  );
+};
+
+export const TransactionsTable = ({ onEdit }) => {
+  const { filteredTransactions, sort, setSort, role } = useFinanceStore();
+  const isAdmin = role === 'admin';
+
+  // Pagination bounds
+  const ITEMS_PER_PAGE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(filteredTransactions.length / ITEMS_PER_PAGE) || 1;
+  const safePage = Math.min(currentPage, totalPages);
+  
+  // If filters change and we are on a page that no longer exists, reset.
+  if (safePage !== currentPage) {
+    setCurrentPage(safePage);
+  }
+
+  const startIndex = (safePage - 1) * ITEMS_PER_PAGE;
+  const currentSlice = filteredTransactions.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  if (filteredTransactions.length === 0) {
+    return (
+      <div className="transactions-table-empty">
+        <EmptyState
+          icon={FileText}
+          title="No transactions found"
+          message="Adjust your search filters or add a new transaction."
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="transactions-table-wrapper">
+      <div className="transactions-table-scroll-container">
+        <div className="transactions-table-header">
+          <SortableHeader label="Date" field="date" currentSort={sort} setSort={setSort} />
+          <SortableHeader label="Description" field="description" currentSort={sort} setSort={setSort} />
+          <SortableHeader label="Category" field="category" currentSort={sort} setSort={setSort} />
+          <SortableHeader label="Type" field="type" currentSort={sort} setSort={setSort} />
+          <SortableHeader label="Amount" field="amount" currentSort={sort} setSort={setSort} />
+          {isAdmin && <div className="table-header-cell table-col-actions"></div>}
+        </div>
+
+        <div className="transactions-table-body">
+          {currentSlice.map(tx => (
+            <TransactionRow 
+              key={tx.id} 
+              transaction={tx} 
+              isAdmin={isAdmin} 
+              onEdit={onEdit} 
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="transactions-pagination">
+        <span className="pagination-info">
+          Showing {startIndex + 1}–{Math.min(startIndex + ITEMS_PER_PAGE, filteredTransactions.length)} of {filteredTransactions.length}
+        </span>
+        <div className="pagination-controls">
+          <Button 
+            variant="outline" 
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={safePage === 1}
+          >
+            Previous
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={safePage === totalPages}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};

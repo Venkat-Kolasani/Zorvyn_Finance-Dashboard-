@@ -1,0 +1,124 @@
+.tx-row {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s;
+  gap: 16px;
+  min-width: 800px; /* Ensure table minimum width for scrolling */
+}
+
+.tx-row:hover {
+  background-color: var(--color-surface-2);
+}
+
+.tx-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.tx-col-date {
+  width: 120px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.tx-col-info {
+  flex: 2;
+  min-width: 200px;
+  gap: 2px;
+}
+
+.tx-desc {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tx-merchant {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tx-col-category {
+  flex: 1;
+  min-width: 120px;
+  align-items: flex-start;
+}
+
+.tx-col-type {
+  flex: 1;
+  min-width: 100px;
+  align-items: flex-start;
+}
+
+/* Custom background override for 'income' badge if using standard Badge component */
+.bg-income {
+  background-color: var(--color-income) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.tx-col-amount {
+  width: 140px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-align: right;
+  display: block; /* revert flex-col since it's just text */
+}
+
+.tx-col-amount.stretch {
+  flex: 1;
+  text-align: right;
+  width: auto;
+}
+
+.tx-col-amount.income {
+  color: var(--color-income);
+}
+
+.tx-col-amount.expense {
+  color: var(--color-expense);
+}
+
+.tx-col-actions {
+  width: 80px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.tx-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.tx-action-btn:hover {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.delete-btn:hover {
+  color: var(--color-expense);
+  background-color: var(--color-expense-bg);
+}

@@ -1,0 +1,91 @@
+.transactions-table-wrapper {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.transactions-table-empty {
+  padding: 64px 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.transactions-table-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.transactions-table-header {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background-color: var(--color-surface-2);
+  border-bottom: 1px solid var(--color-border);
+  height: 48px;
+  min-width: 800px; /* same as row min-width */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  gap: 16px;
+}
+
+.table-header-cell {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.table-header-cell:hover, .table-header-cell.active {
+  color: var(--color-text);
+}
+
+.sort-icon {
+  display: flex;
+  color: var(--color-accent);
+}
+
+/* Match widths with TransactionRow.css */
+.table-col-date { width: 120px; flex-shrink: 0; }
+.table-col-description { flex: 2; min-width: 200px; }
+.table-col-category { flex: 1; min-width: 120px; }
+.table-col-type { flex: 1; min-width: 100px; }
+.table-col-amount { width: 140px; flex-shrink: 0; justify-content: flex-end; }
+.table-col-actions { width: 80px; flex-shrink: 0; cursor: default; }
+
+.transactions-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.pagination-info {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .transactions-pagination {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
