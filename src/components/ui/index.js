@@ -1,2 +1,3 @@
 // UI Components - Reusable primitives
-export {};
+export { Card } from './Card.jsx';
+export { Badge } from './Badge.jsx';
