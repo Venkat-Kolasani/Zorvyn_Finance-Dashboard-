@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowDown, ArrowUp, FileText } from 'lucide-react';
-import useFinanceStore from '../../../store/useFinanceStore';
+import useFinanceStore from '../../store/useFinanceStore';
 import { TransactionRow } from './TransactionRow';
-import { EmptyState, Button } from '../../ui';
+import { EmptyState, Button } from '../ui';
 import './TransactionsTable.css';
 
 const SortableHeader = ({ label, field, currentSort, setSort }) => {

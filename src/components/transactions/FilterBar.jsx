@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
-import useFinanceStore from '../../../store/useFinanceStore';
-import { CATEGORIES } from '../../../data/categories';
-import { Button } from '../../ui';
+import useFinanceStore from '../../store/useFinanceStore';
+import { CATEGORIES } from '../../data/categories';
+import { Button } from '../ui';
 import './FilterBar.css';
 
 export const FilterBar = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from '../../ui';
-import useFinanceStore from '../../../store/useFinanceStore';
-import { CATEGORIES } from '../../../data/categories';
+import { Modal, Button } from '../ui';
+import useFinanceStore from '../../store/useFinanceStore';
+import { CATEGORIES } from '../../data/categories';
 import './AddTransactionModal.css';
 
 const INITIAL_FORM = {

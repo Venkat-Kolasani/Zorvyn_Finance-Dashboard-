@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import { PieChart as RechartsPie, Pie, Cell, Tooltip as RechartsTooltip, ResponsiveContainer, Label } from 'recharts';
 import { PieChart as PieChartIcon } from 'lucide-react';
-import useFinanceStore from '../../../store/useFinanceStore';
-import { getCategoryBreakdown } from '../../../utils/calculations';
-import { CATEGORIES, getCategoryById } from '../../../data/categories';
-import { formatCurrency, formatPercent } from '../../../utils/formatters';
-import { EmptyState } from '../../ui';
+import useFinanceStore from '../../store/useFinanceStore';
+import { getCategoryBreakdown } from '../../utils/calculations';
+import { CATEGORIES, getCategoryById } from '../../data/categories';
+import { formatCurrency, formatPercent } from '../../utils/formatters';
+import { EmptyState } from '../ui';
 import './SpendingChart.css';
 
 // Map the custom color strings to pleasant hex values

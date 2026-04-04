@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
-import useFinanceStore from '../../../store/useFinanceStore';
-import { getTotals } from '../../../utils/calculations';
-import { formatCurrency, formatPercent } from '../../../utils/formatters';
+import useFinanceStore from '../../store/useFinanceStore';
+import { getTotals } from '../../utils/calculations';
+import { formatCurrency, formatPercent } from '../../utils/formatters';
 import './SummaryCards.css';
 
 /**

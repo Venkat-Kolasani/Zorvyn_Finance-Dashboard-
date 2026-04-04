@@ -1,2 +1,2 @@
 // Insights Components
-export {};
+export * from './InsightCard';

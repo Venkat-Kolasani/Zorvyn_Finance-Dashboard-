@@ -7,9 +7,9 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import useFinanceStore from '../../../store/useFinanceStore';
-import { getMonthlyData } from '../../../utils/calculations';
-import { formatCurrency } from '../../../utils/formatters';
+import useFinanceStore from '../../store/useFinanceStore';
+import { getMonthlyData } from '../../utils/calculations';
+import { formatCurrency } from '../../utils/formatters';
 import './BalanceTrendChart.css';
 
 /**
