@@ -1,2 +1,1 @@
-// Global Store
-export {};
+export { default as useFinanceStore } from './useFinanceStore.js';

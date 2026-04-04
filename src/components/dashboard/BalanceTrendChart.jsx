@@ -12,9 +12,6 @@ import { getMonthlyData } from '../../utils/calculations';
 import { formatCurrency } from '../../utils/formatters';
 import './BalanceTrendChart.css';
 
-/**
- * Custom tooltip component for the Recharts AreaChart.
- */
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -47,17 +44,13 @@ export const BalanceTrendChart = () => {
   const darkMode = useFinanceStore((state) => state.darkMode);
   const data = getMonthlyData(transactions);
   
-  // State to hold CSS variable values for Recharts rendering
   const [themeColors, setThemeColors] = useState({
     income: 'var(--color-income)',
     expense: 'var(--color-expense)',
     textMuted: 'var(--color-text-muted)'
   });
 
-  // Read actual CSS vars whenever the theme changes
   useEffect(() => {
-    // A tiny delay ensures the CSS classes (like .dark) have been applied 
-    // before we read the property values.
     const updateColors = () => {
       const rootStyle = getComputedStyle(document.documentElement);
       setThemeColors({
@@ -68,7 +61,6 @@ export const BalanceTrendChart = () => {
     };
 
     updateColors();
-    // In some edge cases, waiting a frame ensures exact color accuracy if transitions are used
     const timer = setTimeout(updateColors, 50);
     return () => clearTimeout(timer);
   }, [darkMode]);

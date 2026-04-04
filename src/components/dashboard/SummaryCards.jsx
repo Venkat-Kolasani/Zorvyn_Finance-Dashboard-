@@ -5,12 +5,6 @@ import { getTotals } from '../../utils/calculations';
 import { formatCurrency, formatPercent } from '../../utils/formatters';
 import './SummaryCards.css';
 
-/**
- * Custom hook to animate a number counting up from 0 to the target value.
- * @param {number} target - The final number to reach
- * @param {number} duration - Animation duration in ms
- * @returns {number} The current animated value
- */
 const useCountUp = (target, duration = 800) => {
   const [count, setCount] = useState(0);
 
@@ -19,7 +13,6 @@ const useCountUp = (target, duration = 800) => {
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      // Ease out quartic function for a smooth slow-down effect
       const easeOut = 1 - Math.pow(1 - progress, 4);
       const nextValue = progress < 1 ? easeOut * target : target;
       setCount(nextValue);

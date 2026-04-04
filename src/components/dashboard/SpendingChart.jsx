@@ -8,7 +8,6 @@ import { formatCurrency, formatPercent } from '../../utils/formatters';
 import { EmptyState } from '../ui';
 import './SpendingChart.css';
 
-// Map the custom color strings to pleasant hex values
 const COLOR_MAP = {
   green: 'var(--color-chart-green)',
   slate: 'var(--color-chart-slate)',
@@ -55,8 +54,7 @@ export const SpendingChart = () => {
       processedData = breakdown;
     }
 
-    // Map to final objects with label and color
-    const finalData = processedData.map(item => {
+    const chartData = processedData.map((item) => {
       if (item.category === 'other') {
         return {
           ...item,
@@ -73,7 +71,7 @@ export const SpendingChart = () => {
       };
     });
 
-    return { chartData: finalData, totalExpenses: totalExp };
+    return { chartData, totalExpenses: totalExp };
   }, [transactions]);
 
   if (chartData.length === 0 || totalExpenses === 0) {

@@ -1,11 +1,10 @@
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import useFinanceStore from './store/useFinanceStore';
-import { SidebarProvider } from './context/SidebarContext';
+import { SidebarProvider } from './context/SidebarProvider';
 import { Sidebar } from './components/layout';
 import './App.css';
 
-// Lazy load pages
 const DashboardPage = React.lazy(() => import('./pages/DashboardPage'));
 const TransactionsPage = React.lazy(() => import('./pages/TransactionsPage'));
 const InsightsPage = React.lazy(() => import('./pages/InsightsPage'));
@@ -13,7 +12,6 @@ const InsightsPage = React.lazy(() => import('./pages/InsightsPage'));
 function App() {
   const darkMode = useFinanceStore((state) => state.darkMode);
 
-  // Apply dark class to document root element for CSS variable theming
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');

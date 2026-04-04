@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
-import { PageWrapper } from '../components/layout';
+import { Navbar } from '../components/layout';
 import { 
   FilterBar, 
   TransactionsTable, 
@@ -8,6 +8,7 @@ import {
 } from '../components/transactions';
 import { Button } from '../components/ui';
 import useFinanceStore from '../store/useFinanceStore';
+import '../components/layout/PageWrapper.css';
 import './TransactionsPage.css';
 
 const TransactionsPage = () => {
@@ -33,10 +34,11 @@ const TransactionsPage = () => {
   };
 
   return (
-    <PageWrapper title="Transactions">
-      <div className="transactions-page-content">
-        
-        <div className="transactions-page-header">
+    <div className="page-wrapper">
+      <Navbar title="Transactions" />
+      <main className="page-content">
+        <div className="transactions-page-content">
+          <div className="transactions-page-header">
           <h2 className="transactions-page-title">Transactions</h2>
           {isAdmin && (
             <Button onClick={handleOpenAdd} className="add-transaction-btn">
@@ -46,18 +48,19 @@ const TransactionsPage = () => {
           )}
         </div>
 
-        <FilterBar />
-        
-        <TransactionsTable onEdit={handleOpenEdit} />
+          <FilterBar />
 
-      </div>
+          <TransactionsTable onEdit={handleOpenEdit} />
+        </div>
 
-      <AddTransactionModal 
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        editTransaction={editingTransaction}
-      />
-    </PageWrapper>
+        <AddTransactionModal
+          key={`${isModalOpen}-${editingTransaction?.id ?? 'new'}`}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          editTransaction={editingTransaction}
+        />
+      </main>
+    </div>
   );
 };
 

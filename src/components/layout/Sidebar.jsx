@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { LayoutDashboard, ArrowLeftRight, TrendingUp, Moon, Sun } from 'lucide-react';
 import useFinanceStore from '../../store/useFinanceStore';
-import { useSidebar } from '../../context/SidebarContext';
+import { useSidebar } from '../../context/useSidebar';
 import { Badge } from '../ui';
 import './Sidebar.css';
 
@@ -14,7 +14,6 @@ export const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile overlay */}
       {isOpen && (
         <div className="sidebar-overlay" onClick={close}></div>
       )}

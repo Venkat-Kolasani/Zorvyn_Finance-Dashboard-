@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
 import useFinanceStore from '../../store/useFinanceStore';
-import { useSidebar } from '../../context/SidebarContext';
+import { useSidebar } from '../../context/useSidebar';
 import './Navbar.css';
 
 export const Navbar = ({ title }) => {

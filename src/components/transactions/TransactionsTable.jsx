@@ -34,20 +34,18 @@ export const TransactionsTable = ({ onEdit }) => {
   const role = useFinanceStore((state) => state.role);
   const isAdmin = role === 'admin';
 
-  // Pagination bounds
-  const ITEMS_PER_PAGE = 10;
+  const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(filteredTransactions.length / ITEMS_PER_PAGE) || 1;
-  const safePage = Math.min(currentPage, totalPages);
-  
-  // If filters change and we are on a page that no longer exists, reset.
-  if (safePage !== currentPage) {
-    setCurrentPage(safePage);
+  const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage) || 1;
+  const page = Math.min(currentPage, totalPages);
+
+  if (page !== currentPage) {
+    setCurrentPage(page);
   }
 
-  const startIndex = (safePage - 1) * ITEMS_PER_PAGE;
-  const currentSlice = filteredTransactions.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const startIndex = (page - 1) * itemsPerPage;
+  const visibleRows = filteredTransactions.slice(startIndex, startIndex + itemsPerPage);
 
   if (filteredTransactions.length === 0) {
     return (
@@ -74,7 +72,7 @@ export const TransactionsTable = ({ onEdit }) => {
         </div>
 
         <div className="transactions-table-body">
-          {currentSlice.map(tx => (
+          {visibleRows.map((tx) => (
             <TransactionRow 
               key={tx.id} 
               transaction={tx} 
@@ -87,20 +85,20 @@ export const TransactionsTable = ({ onEdit }) => {
 
       <div className="transactions-pagination">
         <span className="pagination-info">
-          Showing {startIndex + 1}–{Math.min(startIndex + ITEMS_PER_PAGE, filteredTransactions.length)} of {filteredTransactions.length}
+          Showing {startIndex + 1}–{Math.min(startIndex + itemsPerPage, filteredTransactions.length)} of {filteredTransactions.length}
         </span>
         <div className="pagination-controls">
           <Button 
             variant="outline" 
-            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-            disabled={safePage === 1}
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
           >
             Previous
           </Button>
           <Button 
             variant="outline" 
-            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-            disabled={safePage === totalPages}
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
           >
             Next
           </Button>

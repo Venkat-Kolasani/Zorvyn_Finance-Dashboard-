@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { PageWrapper } from '../components/layout';
+import { Navbar } from '../components/layout';
 import { SummaryCards } from '../components/dashboard/SummaryCards';
 import { SummaryCardsSkeleton } from '../components/dashboard/SummaryCardsSkeleton';
 import { BalanceTrendChart } from '../components/dashboard/BalanceTrendChart';
 import { SpendingChart } from '../components/dashboard/SpendingChart';
 import { RecentTransactions } from '../components/dashboard/RecentTransactions';
 import { Card } from '../components/ui';
+import '../components/layout/PageWrapper.css';
 import './DashboardPage.css';
 
 const DashboardPage = () => {
@@ -20,8 +21,10 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <PageWrapper title="Overview">
-      <div className="dashboard-content">
+    <div className="page-wrapper">
+      <Navbar title="Overview" />
+      <main className="page-content">
+        <div className="dashboard-content">
         {isLoading ? <SummaryCardsSkeleton /> : <SummaryCards />}
         
         <div className="dashboard-charts-grid">
@@ -42,8 +45,9 @@ const DashboardPage = () => {
             <RecentTransactions />
           </Card>
         </div>
-      </div>
-    </PageWrapper>
+        </div>
+      </main>
+    </div>
   );
 };
 

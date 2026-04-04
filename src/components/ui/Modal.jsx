@@ -43,7 +43,6 @@ export const Modal = ({ isOpen, onClose, title, children, width = 'md' }) => {
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
-      // Use setTimeout to ensure the element is focusable after rendering
       setTimeout(() => panelRef.current?.focus(), 0);
     } else {
       document.body.style.overflow = '';
