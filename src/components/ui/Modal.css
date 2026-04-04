@@ -97,3 +97,44 @@
     transform: scale(1);
   }
 }
+
+/* Mobile: full screen modal */
+@media (max-width: 639px) {
+  .modal-backdrop {
+    align-items: flex-end;
+  }
+  
+  .modal-panel {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 12px 12px 0 0;
+    animation: slideUp 0.3s ease-out forwards;
+  }
+  
+  .modal-width-sm,
+  .modal-width-md,
+  .modal-width-lg {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .modal-header {
+    padding: 16px;
+  }
+  
+  .modal-body {
+    padding: 16px;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

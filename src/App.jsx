@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import useFinanceStore from './store/useFinanceStore';
+import { SidebarProvider } from './context/SidebarContext';
 import { Sidebar } from './components/layout';
 import './App.css';
 
@@ -22,23 +23,25 @@ function App() {
   }, [darkMode]);
 
   return (
-    <div className="app-root">
-      <BrowserRouter>
-        <Sidebar />
-        
-        <Suspense fallback={
-          <div className="loading-spinner-container">
-            <div className="loading-spinner"></div>
-          </div>
-        }>
-          <Routes>
-            <Route path="/" element={<DashboardPage />} />
-            <Route path="/transactions" element={<TransactionsPage />} />
-            <Route path="/insights" element={<InsightsPage />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </div>
+    <SidebarProvider>
+      <div className="app-root">
+        <BrowserRouter>
+          <Sidebar />
+          
+          <Suspense fallback={
+            <div className="loading-spinner-container">
+              <div className="loading-spinner"></div>
+            </div>
+          }>
+            <Routes>
+              <Route path="/" element={<DashboardPage />} />
+              <Route path="/transactions" element={<TransactionsPage />} />
+              <Route path="/insights" element={<InsightsPage />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </div>
+    </SidebarProvider>
   );
 }
 

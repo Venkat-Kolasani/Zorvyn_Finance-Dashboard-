@@ -83,13 +83,29 @@
 }
 
 @media (max-width: 640px) {
-  .filter-search-wrapper {
-    flex: 100%;
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
   }
+  
+  .filter-search-wrapper {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+  }
+  
   .filter-selects {
     width: 100%;
+    flex-direction: column;
   }
+  
   .filter-select {
-    flex: 1;
+    flex: none;
+    width: 100%;
+  }
+  
+  .filter-clear-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

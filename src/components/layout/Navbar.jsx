@@ -1,17 +1,19 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
 import useFinanceStore from '../../store/useFinanceStore';
+import { useSidebar } from '../../context/SidebarContext';
 import './Navbar.css';
 
 export const Navbar = ({ title }) => {
-  const { role, setRole, toggleSidebar } = useFinanceStore();
+  const { role, setRole } = useFinanceStore();
+  const { toggle } = useSidebar();
 
   return (
     <header className="navbar">
       <div className="navbar-left">
         <button 
           className="mobile-menu-btn" 
-          onClick={toggleSidebar}
+          onClick={toggle}
           aria-label="Toggle sidebar"
         >
           <Menu size={24} />

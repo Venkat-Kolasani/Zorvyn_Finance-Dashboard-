@@ -2,20 +2,22 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { LayoutDashboard, ArrowLeftRight, TrendingUp, Moon, Sun } from 'lucide-react';
 import useFinanceStore from '../../store/useFinanceStore';
+import { useSidebar } from '../../context/SidebarContext';
 import { Badge } from '../ui';
 import './Sidebar.css';
 
 export const Sidebar = () => {
-  const { role, darkMode, toggleDarkMode, isSidebarOpen, closeSidebar } = useFinanceStore();
+  const { role, darkMode, toggleDarkMode } = useFinanceStore();
+  const { isOpen, close } = useSidebar();
 
   return (
     <>
       {/* Mobile overlay */}
-      {isSidebarOpen && (
-        <div className="sidebar-overlay" onClick={closeSidebar}></div>
+      {isOpen && (
+        <div className="sidebar-overlay" onClick={close}></div>
       )}
 
-      <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <span className="sidebar-logo-text">Finance</span>
         </div>
@@ -24,7 +26,7 @@ export const Sidebar = () => {
           <NavLink 
             to="/" 
             className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
-            onClick={closeSidebar}
+            onClick={close}
             end
           >
             <LayoutDashboard size={20} className="sidebar-icon" />
@@ -34,7 +36,7 @@ export const Sidebar = () => {
           <NavLink 
             to="/transactions" 
             className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
-            onClick={closeSidebar}
+            onClick={close}
           >
             <ArrowLeftRight size={20} className="sidebar-icon" />
             <span>Transactions</span>
@@ -43,7 +45,7 @@ export const Sidebar = () => {
           <NavLink 
             to="/insights" 
             className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
-            onClick={closeSidebar}
+            onClick={close}
           >
             <TrendingUp size={20} className="sidebar-icon" />
             <span>Insights</span>

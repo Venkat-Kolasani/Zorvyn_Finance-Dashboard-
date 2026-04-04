@@ -8,7 +8,7 @@ const baseStyle = {
   fontSize: '14px',
   fontWeight: 500,
   lineHeight: 1,
-  transition: 'background-color 100ms ease, opacity 100ms ease',
+  transition: 'background-color 100ms ease, border-color 100ms ease, opacity 100ms ease',
   cursor: 'pointer',
 };
 

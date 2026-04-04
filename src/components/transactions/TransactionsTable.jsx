@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowDown, ArrowUp, FileText } from 'lucide-react';
+import { ArrowDown, FileText } from 'lucide-react';
 import useFinanceStore from '../../store/useFinanceStore';
 import { TransactionRow } from './TransactionRow';
 import { EmptyState, Button } from '../ui';
@@ -7,7 +7,7 @@ import './TransactionsTable.css';
 
 const SortableHeader = ({ label, field, currentSort, setSort }) => {
   const isActive = currentSort.field === field;
-  const isDesc = currentSort.direction === 'desc';
+  const isAsc = currentSort.direction === 'asc';
 
   return (
     <div 
@@ -19,8 +19,8 @@ const SortableHeader = ({ label, field, currentSort, setSort }) => {
     >
       {label}
       {isActive && (
-        <span className="sort-icon">
-          {isDesc ? <ArrowDown size={14} /> : <ArrowUp size={14} />}
+        <span className={`sort-icon ${isAsc ? 'asc' : ''}`}>
+          <ArrowDown size={14} />
         </span>
       )}
     </div>

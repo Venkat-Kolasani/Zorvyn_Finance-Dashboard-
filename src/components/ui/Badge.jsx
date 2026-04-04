@@ -42,6 +42,7 @@ const Badge = ({ children, variant = 'neutral' }) => {
         textTransform: 'uppercase',
         letterSpacing: '0.08em',
         lineHeight: 1,
+        transition: 'background-color 0.2s ease, color 0.2s ease',
       }}
     >
       {children}

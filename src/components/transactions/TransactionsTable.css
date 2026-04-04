@@ -5,6 +5,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .transactions-table-empty {
@@ -17,6 +18,7 @@
 .transactions-table-scroll-container {
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .transactions-table-header {
@@ -54,6 +56,11 @@
 .sort-icon {
   display: flex;
   color: var(--color-accent);
+  transition: transform 0.2s ease;
+}
+
+.sort-icon.asc {
+  transform: rotate(180deg);
 }
 
 /* Match widths with TransactionRow.css */
@@ -87,5 +94,11 @@
   .transactions-pagination {
     flex-direction: column;
     gap: 16px;
+  }
+  
+  .transactions-table-header,
+  .transactions-table-body {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

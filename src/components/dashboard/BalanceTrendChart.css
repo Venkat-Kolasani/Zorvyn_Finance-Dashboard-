@@ -4,6 +4,9 @@
   position: relative;
   /* Ensure the text on Recharts X-axis matches default styling */
   font-family: var(--font-body);
+  /* Prevent overflow on small screens */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .balance-chart-tooltip {
