@@ -11,6 +11,19 @@ const variantStyles = {
     background: 'var(--color-surface-2)',
     color: 'var(--color-text-muted)',
   },
+  default: {
+    background: 'var(--color-accent)',
+    color: 'var(--color-accent-fg)',
+  },
+  secondary: {
+    background: 'var(--color-surface-2)',
+    color: 'var(--color-text-muted)',
+  },
+  outline: {
+    background: 'transparent',
+    color: 'var(--color-text-muted)',
+    border: '1px solid var(--color-border)',
+  },
 };
 
 const Badge = ({ children, variant = 'neutral' }) => {

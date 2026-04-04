@@ -63,7 +63,7 @@
 /* Custom background override for 'income' badge if using standard Badge component */
 .bg-income {
   background-color: var(--color-income) !important;
-  color: white !important;
+  color: var(--color-income-bg) !important;
   border: none !important;
 }
 

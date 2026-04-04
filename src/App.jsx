@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import useFinanceStore from './store/useFinanceStore';
 import { Sidebar } from './components/layout';
@@ -12,8 +12,17 @@ const InsightsPage = React.lazy(() => import('./pages/InsightsPage'));
 function App() {
   const { darkMode } = useFinanceStore();
 
+  // Apply dark class to document root element for CSS variable theming
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
   return (
-    <div className={`app-root ${darkMode ? 'dark' : ''}`}>
+    <div className="app-root">
       <BrowserRouter>
         <Sidebar />
         
