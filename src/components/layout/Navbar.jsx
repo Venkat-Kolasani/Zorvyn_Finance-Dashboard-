@@ -5,7 +5,8 @@ import { useSidebar } from '../../context/SidebarContext';
 import './Navbar.css';
 
 export const Navbar = ({ title }) => {
-  const { role, setRole } = useFinanceStore();
+  const role = useFinanceStore((state) => state.role);
+  const setRole = useFinanceStore((state) => state.setRole);
   const { toggle } = useSidebar();
 
   return (

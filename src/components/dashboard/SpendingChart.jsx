@@ -3,22 +3,22 @@ import { PieChart as RechartsPie, Pie, Cell, Tooltip as RechartsTooltip, Respons
 import { PieChart as PieChartIcon } from 'lucide-react';
 import useFinanceStore from '../../store/useFinanceStore';
 import { getCategoryBreakdown } from '../../utils/calculations';
-import { CATEGORIES, getCategoryById } from '../../data/categories';
+import { getCategoryById } from '../../data/categories';
 import { formatCurrency, formatPercent } from '../../utils/formatters';
 import { EmptyState } from '../ui';
 import './SpendingChart.css';
 
 // Map the custom color strings to pleasant hex values
 const COLOR_MAP = {
-  green: '#22c55e',
-  slate: '#64748b',
-  blue: '#3b82f6',
-  orange: '#f97316',
-  yellow: '#eab308',
-  purple: '#a855f7',
-  gray: '#6b7280',
-  teal: '#14b8a6',
-  other: '#9ca3af'
+  green: 'var(--color-chart-green)',
+  slate: 'var(--color-chart-slate)',
+  blue: 'var(--color-chart-blue)',
+  orange: 'var(--color-chart-orange)',
+  yellow: 'var(--color-chart-yellow)',
+  purple: 'var(--color-chart-purple)',
+  gray: 'var(--color-chart-gray)',
+  teal: 'var(--color-chart-teal)',
+  other: 'var(--color-chart-other)'
 };
 
 const CustomTooltip = ({ active, payload }) => {
@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 export const SpendingChart = () => {
-  const { transactions } = useFinanceStore();
+  const transactions = useFinanceStore((state) => state.transactions);
   
   const { chartData, totalExpenses } = useMemo(() => {
     const breakdown = getCategoryBreakdown(transactions);

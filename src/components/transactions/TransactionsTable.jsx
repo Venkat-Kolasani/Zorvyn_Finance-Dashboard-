@@ -28,7 +28,10 @@ const SortableHeader = ({ label, field, currentSort, setSort }) => {
 };
 
 export const TransactionsTable = ({ onEdit }) => {
-  const { filteredTransactions, sort, setSort, role } = useFinanceStore();
+  const filteredTransactions = useFinanceStore((state) => state.filteredTransactions);
+  const sort = useFinanceStore((state) => state.sort);
+  const setSort = useFinanceStore((state) => state.setSort);
+  const role = useFinanceStore((state) => state.role);
   const isAdmin = role === 'admin';
 
   // Pagination bounds

@@ -7,7 +7,9 @@ import { Badge } from '../ui';
 import './Sidebar.css';
 
 export const Sidebar = () => {
-  const { role, darkMode, toggleDarkMode } = useFinanceStore();
+  const role = useFinanceStore((state) => state.role);
+  const darkMode = useFinanceStore((state) => state.darkMode);
+  const toggleDarkMode = useFinanceStore((state) => state.toggleDarkMode);
   const { isOpen, close } = useSidebar();
 
   return (

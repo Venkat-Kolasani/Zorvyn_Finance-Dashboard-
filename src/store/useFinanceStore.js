@@ -152,9 +152,6 @@ const useFinanceStore = create(
         },
         setRole: (role) => set({ role }),
         toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
-        isSidebarOpen: false,
-        toggleSidebar: () => set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
-        closeSidebar: () => set({ isSidebarOpen: false }),
       };
 
       return initialState;

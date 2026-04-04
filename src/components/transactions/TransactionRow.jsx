@@ -7,7 +7,7 @@ import useFinanceStore from '../../store/useFinanceStore';
 import './TransactionRow.css';
 
 export const TransactionRow = ({ transaction, isAdmin, onEdit }) => {
-  const { deleteTransaction } = useFinanceStore();
+  const deleteTransaction = useFinanceStore((state) => state.deleteTransaction);
 
   const isIncome = transaction.type === 'income';
   const categoryMeta = getCategoryById(transaction.category);

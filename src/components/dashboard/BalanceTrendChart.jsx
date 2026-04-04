@@ -43,14 +43,15 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export const BalanceTrendChart = () => {
-  const { transactions, darkMode } = useFinanceStore();
+  const transactions = useFinanceStore((state) => state.transactions);
+  const darkMode = useFinanceStore((state) => state.darkMode);
   const data = getMonthlyData(transactions);
   
   // State to hold CSS variable values for Recharts rendering
   const [themeColors, setThemeColors] = useState({
-    income: '#166534',
-    expense: '#991b1b',
-    textMuted: '#737370'
+    income: 'var(--color-income)',
+    expense: 'var(--color-expense)',
+    textMuted: 'var(--color-text-muted)'
   });
 
   // Read actual CSS vars whenever the theme changes
@@ -60,9 +61,9 @@ export const BalanceTrendChart = () => {
     const updateColors = () => {
       const rootStyle = getComputedStyle(document.documentElement);
       setThemeColors({
-        income: rootStyle.getPropertyValue('--color-income').trim() || '#166534',
-        expense: rootStyle.getPropertyValue('--color-expense').trim() || '#991b1b',
-        textMuted: rootStyle.getPropertyValue('--color-text-muted').trim() || '#737370'
+        income: rootStyle.getPropertyValue('--color-income').trim() || 'var(--color-income)',
+        expense: rootStyle.getPropertyValue('--color-expense').trim() || 'var(--color-expense)',
+        textMuted: rootStyle.getPropertyValue('--color-text-muted').trim() || 'var(--color-text-muted)'
       });
     };
 

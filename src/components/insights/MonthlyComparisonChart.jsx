@@ -41,7 +41,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export const MonthlyComparisonChart = () => {
-  const { transactions } = useFinanceStore();
+  const transactions = useFinanceStore((state) => state.transactions);
   
   const data = useMemo(() => {
     return getMonthlyData(transactions);

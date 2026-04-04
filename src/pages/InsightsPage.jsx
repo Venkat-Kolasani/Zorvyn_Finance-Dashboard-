@@ -10,7 +10,7 @@ import { getCategoryById } from '../data/categories';
 import './InsightsPage.css';
 
 const InsightsPage = () => {
-  const { transactions } = useFinanceStore();
+  const transactions = useFinanceStore((state) => state.transactions);
 
   if (!transactions || transactions.length === 0) {
     return (

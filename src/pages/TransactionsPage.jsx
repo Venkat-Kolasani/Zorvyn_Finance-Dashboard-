@@ -11,7 +11,7 @@ import useFinanceStore from '../store/useFinanceStore';
 import './TransactionsPage.css';
 
 const TransactionsPage = () => {
-  const { role } = useFinanceStore();
+  const role = useFinanceStore((state) => state.role);
   const isAdmin = role === 'admin';
 
   const [isModalOpen, setIsModalOpen] = useState(false);

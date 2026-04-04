@@ -15,23 +15,17 @@ const useCountUp = (target, duration = 800) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (target === 0) {
-      setCount(0);
-      return;
-    }
-
     let startTimestamp = null;
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       // Ease out quartic function for a smooth slow-down effect
       const easeOut = 1 - Math.pow(1 - progress, 4);
-      setCount(easeOut * target);
+      const nextValue = progress < 1 ? easeOut * target : target;
+      setCount(nextValue);
 
       if (progress < 1) {
         window.requestAnimationFrame(step);
-      } else {
-        setCount(target);
       }
     };
 
@@ -63,7 +57,7 @@ const SummaryCard = ({ title, value, formatter, colorClass, fakeDelta }) => {
 };
 
 export const SummaryCards = () => {
-  const { transactions } = useFinanceStore();
+  const transactions = useFinanceStore((state) => state.transactions);
   const { netBalance, totalIncome, totalExpense, savingsRate } = getTotals(transactions);
 
   return (

@@ -29,6 +29,16 @@ const variantStyles = {
     color: 'var(--color-accent-fg)',
     border: '1px solid var(--color-accent)',
   },
+  default: {
+    background: 'var(--color-accent)',
+    color: 'var(--color-accent-fg)',
+    border: '1px solid var(--color-accent)',
+  },
+  outline: {
+    background: 'transparent',
+    color: 'var(--color-text-muted)',
+    border: '1px solid var(--color-border)',
+  },
   ghost: {
     background: 'transparent',
     color: 'var(--color-text-muted)',

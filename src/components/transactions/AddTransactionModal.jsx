@@ -4,19 +4,22 @@ import useFinanceStore from '../../store/useFinanceStore';
 import { CATEGORIES } from '../../data/categories';
 import './AddTransactionModal.css';
 
-const INITIAL_FORM = {
+const INCOME_CATEGORIES = ['revenue', 'freelance'];
+
+const getInitialForm = () => ({
   date: new Date().toISOString().split('T')[0],
   type: 'expense',
   category: 'software',
   amount: '',
   description: '',
   merchant: ''
-};
+});
 
 export const AddTransactionModal = ({ isOpen, onClose, editTransaction }) => {
-  const { addTransaction, updateTransaction } = useFinanceStore();
+  const addTransaction = useFinanceStore((state) => state.addTransaction);
+  const updateTransaction = useFinanceStore((state) => state.updateTransaction);
   
-  const [formData, setFormData] = useState(INITIAL_FORM);
+  const [formData, setFormData] = useState(getInitialForm);
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -32,14 +35,16 @@ export const AddTransactionModal = ({ isOpen, onClose, editTransaction }) => {
           merchant: editTransaction.merchant
         });
       } else {
-        setFormData(INITIAL_FORM);
+        setFormData(getInitialForm());
       }
+      setErrors({});
+      setHasSubmitted(false);
+    } else {
+      setFormData(getInitialForm());
       setErrors({});
       setHasSubmitted(false);
     }
   }, [isOpen, editTransaction]);
-
-  const INCOME_CATEGORIES = ['revenue', 'freelance'];
   const availableCategories = CATEGORIES.filter(cat => 
     formData.type === 'income' 
       ? INCOME_CATEGORIES.includes(cat.id)
@@ -53,7 +58,7 @@ export const AddTransactionModal = ({ isOpen, onClose, editTransaction }) => {
     } else if (formData.type === 'expense' && INCOME_CATEGORIES.includes(formData.category)) {
       setFormData(prev => ({ ...prev, category: 'software' }));
     }
-  }, [formData.type]);
+  }, [formData.type, formData.category]);
 
   const validate = () => {
     const newErrors = {};

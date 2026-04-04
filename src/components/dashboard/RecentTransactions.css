@@ -82,12 +82,6 @@
 }
 
 .recent-tx-amount.expense {
-  color: var(--color-text); /* Keep expense standard color or expense color? Prompt says: "expense color with minus sign" */
-}
-
-/* Wait, prompt said: "expense in expense color with minus sign" */
-.recent-tx-amount.expense {
-  color: var(--color-text); /* usually expense is standard text or red */
   color: var(--color-expense);
 }
 

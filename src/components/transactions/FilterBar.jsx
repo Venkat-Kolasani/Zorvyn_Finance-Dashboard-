@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Search, X } from 'lucide-react';
 import useFinanceStore from '../../store/useFinanceStore';
 import { CATEGORIES } from '../../data/categories';
@@ -6,30 +6,45 @@ import { Button } from '../ui';
 import './FilterBar.css';
 
 export const FilterBar = () => {
-  const { filters, setFilter, resetFilters } = useFinanceStore();
-  
-  // Local state for debounced search
+  const filters = useFinanceStore((state) => state.filters);
+  const setFilter = useFinanceStore((state) => state.setFilter);
+  const resetFilters = useFinanceStore((state) => state.resetFilters);
+
   const [localSearch, setLocalSearch] = useState(filters.search || '');
+  const searchTimerRef = useRef(null);
 
-  // Debounce effect
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (filters.search !== localSearch) {
-        setFilter('search', localSearch);
+    return () => {
+      if (searchTimerRef.current) {
+        clearTimeout(searchTimerRef.current);
       }
+    };
+  }, []);
+
+  const handleSearchChange = (value) => {
+    setLocalSearch(value);
+
+    if (searchTimerRef.current) {
+      clearTimeout(searchTimerRef.current);
+    }
+
+    searchTimerRef.current = setTimeout(() => {
+      setFilter('search', value);
     }, 300);
+  };
 
-    return () => clearTimeout(timer);
-  }, [localSearch, filters.search, setFilter]);
+  const handleReset = () => {
+    if (searchTimerRef.current) {
+      clearTimeout(searchTimerRef.current);
+    }
 
-  // Sync external filter resets back to local state
-  useEffect(() => {
-    setLocalSearch(filters.search || '');
-  }, [filters.search]);
+    setLocalSearch('');
+    resetFilters();
+  };
 
-  const hasActiveFilters = 
-    filters.search !== '' || 
-    filters.category !== 'all' || 
+  const hasActiveFilters =
+    filters.search !== '' ||
+    filters.category !== 'all' ||
     filters.type !== 'all';
 
   return (
@@ -41,7 +56,7 @@ export const FilterBar = () => {
           className="filter-input filter-search-input"
           placeholder="Search transactions..."
           value={localSearch}
-          onChange={(e) => setLocalSearch(e.target.value)}
+          onChange={(e) => handleSearchChange(e.target.value)}
         />
       </div>
 
@@ -70,9 +85,9 @@ export const FilterBar = () => {
         </select>
 
         {hasActiveFilters && (
-          <Button 
-            variant="ghost" 
-            onClick={resetFilters}
+          <Button
+            variant="ghost"
+            onClick={handleReset}
             className="filter-clear-btn"
           >
             Clear <X size={14} className="ml-1" />

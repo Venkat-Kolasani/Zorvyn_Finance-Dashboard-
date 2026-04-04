@@ -11,7 +11,7 @@ const TransactionsPage = React.lazy(() => import('./pages/TransactionsPage'));
 const InsightsPage = React.lazy(() => import('./pages/InsightsPage'));
 
 function App() {
-  const { darkMode } = useFinanceStore();
+  const darkMode = useFinanceStore((state) => state.darkMode);
 
   // Apply dark class to document root element for CSS variable theming
   useEffect(() => {

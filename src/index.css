@@ -13,6 +13,22 @@
   --color-income-bg: #f0fdf4;
   --color-expense-bg: #fef2f2;
 
+  --color-overlay: rgba(0, 0, 0, 0.45);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  --color-chart-green: #22c55e;
+  --color-chart-slate: #64748b;
+  --color-chart-blue: #3b82f6;
+  --color-chart-orange: #f97316;
+  --color-chart-yellow: #eab308;
+  --color-chart-purple: #a855f7;
+  --color-chart-gray: #6b7280;
+  --color-chart-teal: #14b8a6;
+  --color-chart-other: #9ca3af;
+
   /* Skeleton colors */
   --skeleton-base: #e5e5e4;
   --skeleton-highlight: #f4f4f3;
@@ -41,6 +57,22 @@
   --color-expense: #f87171;
   --color-income-bg: #052e16;
   --color-expense-bg: #450a0a;
+
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.55);
+
+  --color-chart-green: #4ade80;
+  --color-chart-slate: #94a3b8;
+  --color-chart-blue: #60a5fa;
+  --color-chart-orange: #fb923c;
+  --color-chart-yellow: #facc15;
+  --color-chart-purple: #c084fc;
+  --color-chart-gray: #9ca3af;
+  --color-chart-teal: #2dd4bf;
+  --color-chart-other: #a1a1aa;
 
   /* Skeleton colors */
   --skeleton-base: #2e2e2b;

@@ -8,7 +8,7 @@ import { Badge } from '../ui';
 import './RecentTransactions.css';
 
 export const RecentTransactions = () => {
-  const { transactions } = useFinanceStore();
+  const transactions = useFinanceStore((state) => state.transactions);
 
   const recentTransactions = useMemo(() => {
     return [...transactions]
