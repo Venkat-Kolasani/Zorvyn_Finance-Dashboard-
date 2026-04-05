@@ -36,7 +36,7 @@ export const TransactionRow = ({ transaction, isAdmin, onEdit }) => {
       </div>
 
       <div className="tx-col tx-col-type">
-        <Badge variant={isIncome ? 'default' : 'secondary'} className={isIncome ? 'bg-income' : ''}>
+        <Badge variant={isIncome ? 'income' : 'expense'}>
           {isIncome ? 'Income' : 'Expense'}
         </Badge>
       </div>

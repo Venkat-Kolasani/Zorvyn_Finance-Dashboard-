@@ -99,21 +99,73 @@ export const FilterBar = () => {
           <option value="expense">Expense</option>
         </select>
 
-        <input 
-          type="date" 
-          className="filter-input"
-          placeholder="From" 
-          value={localDateStart}
-          onChange={(e) => handleDateChange(e.target.value, localDateEnd)}
-        />
+        <div style={{ 
+          display: 'flex', alignItems: 'center', gap: '6px', 
+          border: '1px solid var(--color-border)', 
+          borderRadius: '6px',
+          padding: '0 10px',
+          height: '36px',
+          background: 'var(--color-surface-2)',
+          overflow: 'hidden'
+        }}>
+          <span style={{ fontSize: '12px', color: 'var(--color-text-muted)', whiteSpace: 'nowrap', lineHeight: 1 }}>From</span>
+          <input 
+            type="date" 
+            value={localDateStart}
+            onChange={(e) => handleDateChange(e.target.value, localDateEnd)}
+            style={{ 
+              border: 'none', 
+              background: 'transparent', 
+              color: 'var(--color-text)',
+              fontSize: '13px',
+              height: '100%',
+              padding: '0',
+              outline: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              lineHeight: '36px',
+              paddingTop: 0,
+              paddingBottom: 0,
+              verticalAlign: 'middle',
+              flex: 1,
+              minWidth: 0
+            }} 
+          />
+        </div>
         
-        <input 
-          type="date" 
-          className="filter-input"
-          placeholder="To" 
-          value={localDateEnd}
-          onChange={(e) => handleDateChange(localDateStart, e.target.value)}
-        />
+        <div style={{ 
+          display: 'flex', alignItems: 'center', gap: '6px', 
+          border: '1px solid var(--color-border)', 
+          borderRadius: '6px',
+          padding: '0 10px',
+          height: '36px',
+          background: 'var(--color-surface-2)',
+          overflow: 'hidden'
+        }}>
+          <span style={{ fontSize: '12px', color: 'var(--color-text-muted)', whiteSpace: 'nowrap', lineHeight: 1 }}>To</span>
+          <input 
+            type="date" 
+            value={localDateEnd}
+            onChange={(e) => handleDateChange(localDateStart, e.target.value)}
+            style={{ 
+              border: 'none', 
+              background: 'transparent', 
+              color: 'var(--color-text)',
+              fontSize: '13px',
+              height: '100%',
+              padding: '0',
+              outline: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              lineHeight: '36px',
+              paddingTop: 0,
+              paddingBottom: 0,
+              verticalAlign: 'middle',
+              flex: 1,
+              minWidth: 0
+            }} 
+          />
+        </div>
 
         {hasActiveFilters && (
           <Button
